@@ -1,16 +1,16 @@
 [submodule "Tools/kake"]
 	path = Tools/kake
-	url = ../kake
+	url = https://github.com/KTXSoftware/kake.git
 	branch = master
 [submodule "Tools/kfx"]
 	path = Tools/kfx
-	url = ../kfx
+	url = https://github.com/KTXSoftware/kfx.git
 	branch = master
 [submodule "Tools/koremake"]
 	path = Tools/koremake
-	url = ../koremake
+	url = https://github.com/KTXSoftware/koremake.git
 	branch = master
 [submodule "Tools/kraffiti"]
 	path = Tools/kraffiti
-	url = ../kraffiti
+	url = https://github.com/KTXSoftware/kraffiti.git
 	branch = master
