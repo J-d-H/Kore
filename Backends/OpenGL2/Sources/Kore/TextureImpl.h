@@ -13,12 +13,13 @@ namespace Kore {
 	class TextureImpl {
 	protected:
 		//static TreeMap<Image, Texture*> images;
-	public:
+		TextureImpl(bool convert) : convert(convert) {}
+
 		unsigned int texture;
 
-		u8 pixfmt;
+		bool const convert; // convert to power2?
 
-		~TextureImpl();
-		u8* conversionBuffer; // Fuer wenn Textur aus Image erstellt wird
+	public:
+		virtual ~TextureImpl();
 	};
 }

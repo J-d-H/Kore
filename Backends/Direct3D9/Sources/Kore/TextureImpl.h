@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Kore\Graphics\Image.h>
+
 struct IDirect3DTexture9;
 
 namespace Kore {
@@ -12,10 +14,14 @@ namespace Kore {
 	public:
 		IDirect3DTexture9* texture;
 		virtual ~TextureImpl();
+
 		void unmipmap();
 		void unset();
 		int stage;
 		bool mipmap;
-		u8 pixfmt;
+		//u8 pixfmt;
+
+	protected:
+		void construct(int width, int height, Image::Format format, void const * data);
 	};
 }
