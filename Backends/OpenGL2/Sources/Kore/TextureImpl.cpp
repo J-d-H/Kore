@@ -251,6 +251,8 @@ TypedTexture<F>::TypedTexture(const char* filename, bool readable)
 	, texHeightRatio(height / (float)texHeight)
 	, TextureImpl(texWidth != width || texHeight != height)
 {
+	this->readable = readable;
+
 	color_type* conversionBuffer;
 	if (convert) {
 		conversionBuffer = new color_type[texWidth * texHeight];
@@ -306,6 +308,8 @@ TypedTexture<F>::TypedTexture(int width, int height, bool readable)
 	, texHeightRatio(height / (float)texHeight)
 	, TextureImpl(texWidth != width || texHeight != height)
 {
+	this->readable = readable;
+
 	color_type* conversionBuffer;
 	if (convert) {
 		conversionBuffer = new color_type[texWidth * texHeight];
