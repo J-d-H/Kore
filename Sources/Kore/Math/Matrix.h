@@ -83,8 +83,36 @@ namespace Kore {
 			return m;
 		}
 
+		// fov in deg
+		static myType Perspective(float fov, float aspect, float near, float far) {
+			myType m;
+			float uh = cot((pi / 360) * fov);
+			float uw = uh / aspect;
+			m.Set(0, 0, uw);
+			m.Set(1, 1, uh);
+			m.Set(2, 2, ((far + near) / (far - near)));
+			m.Set(2, 3, -((2 * far*near) / (far - near)));
+			m.Set(3, 2, 1);
+			return m;
+		}
+
 		static myType lookAt(vec3 eye, vec3 at, vec3 up) {
 			vec3 zaxis = at - eye;
+			zaxis.normalize();
+			vec3 xaxis = up % zaxis;
+			xaxis.normalize();
+			vec3 yaxis = zaxis % xaxis;
+
+			mat4 view;
+			view.Set(0, 0, xaxis.x()); view.Set(0, 1, xaxis.y()); view.Set(0, 2, xaxis.z()); view.Set(0, 3, -xaxis.dot(eye));
+			view.Set(1, 0, yaxis.x()); view.Set(1, 1, yaxis.y()); view.Set(1, 2, yaxis.z()); view.Set(1, 3, -yaxis.dot(eye));
+			view.Set(2, 0, zaxis.x()); view.Set(2, 1, zaxis.y()); view.Set(2, 2, zaxis.z()); view.Set(2, 3, -zaxis.dot(eye));
+			view.Set(3, 0, 0);         view.Set(3, 1, 0);         view.Set(3, 2, 0);         view.Set(3, 3, 1);
+			return view;
+		}
+
+		static myType lookAlong(vec3 axis, vec3 eye, vec3 up) {
+			vec3 zaxis = axis;
 			zaxis.normalize();
 			vec3 xaxis = up % zaxis;
 			xaxis.normalize();
